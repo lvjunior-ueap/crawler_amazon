@@ -62,3 +62,40 @@ src/
 * ECS completo
 * Chunk system (mundo procedural)
 * Sistema de instancing
+
+## Persistência de Dados
+
+### Estratégia
+
+A persistência deve seguir a abordagem mais simples possível inicialmente, evoluindo apenas quando necessário.
+
+### Banco de dados
+
+Ordem de preferência:
+
+1. **SQLite**
+
+   * Zero configuração
+   * Ideal para prototipagem
+   * Baixo overhead
+   * Funciona bem com arquivos locais
+
+2. **PostgreSQL**
+
+   * Utilizado apenas se houver necessidade de:
+
+     * Escala
+     * Concorrência
+     * Queries mais complexas
+
+### Diretrizes
+
+* Evitar dependência de banco no início do projeto
+* Preferir dados em memória ou JSON durante prototipagem
+* Introduzir persistência apenas quando houver necessidade real
+
+### Possíveis usos futuros
+
+* Salvamento de estado do mundo
+* Seeds de geração procedural
+* Configurações do jogador
