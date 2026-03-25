@@ -1,6 +1,11 @@
 import * as THREE from "three";
 import { Loop } from "./Loop.js";
 import { Renderer } from "./Renderer.js";
+import { GameCamera } from "../scene/Camera.js";
+import { Player } from "../scene/Player.js";
+import { World } from "../scene/World.js";
+import { InputSystem } from "../systems/InputSystem.js";
+import { MovementSystem } from "../systems/MovementSystem.js";
 
 export class Game {
   constructor(container = document.querySelector("#app")) {
@@ -10,12 +15,20 @@ export class Game {
 
     this.container = container;
     this.scene = this.createScene();
-    this.camera = this.createCamera();
     this.renderer = new Renderer(container);
-    this.cube = this.createCube();
+    this.camera = new GameCamera();
+    this.player = new Player(this.camera.instance);
+    this.world = new World(this.scene);
+    this.input = new InputSystem(this.renderer.renderer.domElement);
+    this.movement = new MovementSystem({
+      player: this.player,
+      input: this.input,
+      bounds: this.world.bounds,
+    });
 
-    this.scene.add(this.cube);
-    this.addLights();
+    this.scene.add(this.player.object);
+    this.world.build();
+    this.setupHud();
 
     this.loop = new Loop({
       update: (deltaSeconds) => this.update(deltaSeconds),
@@ -29,38 +42,29 @@ export class Game {
 
   createScene() {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x9fc5d1);
-    scene.fog = new THREE.Fog(0x9fc5d1, 8, 22);
+    scene.background = new THREE.Color(0x8fb1ba);
+    scene.fog = new THREE.Fog(0x8fb1ba, 18, 60);
     return scene;
   }
 
-  createCamera() {
-    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-    camera.position.set(0, 1.2, 4);
-    return camera;
-  }
+  setupHud() {
+    const crosshair = document.createElement("div");
+    crosshair.className = "crosshair";
+    crosshair.setAttribute("aria-hidden", "true");
 
-  createCube() {
-    const geometry = new THREE.BoxGeometry(1.4, 1.4, 1.4);
-    const material = new THREE.MeshStandardMaterial({
-      color: 0x2f7d4f,
-      roughness: 0.7,
-      metalness: 0.05,
-    });
+    const hud = document.createElement("div");
+    hud.className = "hud";
+    hud.innerHTML = `
+      <div class="hud__panel">
+        <h1 class="hud__title">Crawler Amazon Arena</h1>
+        <p class="hud__text">Clique para capturar o mouse.</p>
+        <p class="hud__text">WASD move, Space pula, Shift acelera, Esc libera o cursor.</p>
+      </div>
+    `;
 
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.y = 0.3;
-    return cube;
-  }
-
-  addLights() {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.8);
-    const directionalLight = new THREE.DirectionalLight(0xfff2cc, 2.4);
-
-    directionalLight.position.set(3, 4, 5);
-
-    this.scene.add(ambientLight);
-    this.scene.add(directionalLight);
+    this.container.append(crosshair, hud);
+    this.crosshair = crosshair;
+    this.hud = hud;
   }
 
   start() {
@@ -68,20 +72,28 @@ export class Game {
   }
 
   update(deltaSeconds) {
-    this.cube.rotation.x += deltaSeconds * 0.8;
-    this.cube.rotation.y += deltaSeconds * 1.2;
+    this.input.update();
+    this.player.look(this.input.lookDeltaX, this.input.lookDeltaY);
+    this.movement.update(deltaSeconds);
+    this.world.update(deltaSeconds);
+    this.syncHud();
   }
 
   render() {
-    this.renderer.render(this.scene, this.camera);
+    this.renderer.render(this.scene, this.camera.instance);
+  }
+
+  syncHud() {
+    const active = this.input.isLocked();
+    this.container.classList.toggle("is-playing", active);
+    this.hud.classList.toggle("hud--hidden", active);
   }
 
   handleResize() {
     const width = this.container.clientWidth || window.innerWidth;
     const height = this.container.clientHeight || window.innerHeight;
 
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
+    this.camera.resize(width, height);
     this.renderer.handleResize();
   }
 }

@@ -8,8 +8,10 @@ body,
 
 body {
   overflow: hidden;
-  background: linear-gradient(180deg, #b2d4e5 0%, #6b8f71 100%);
-  color: #102218;
+  background:
+    radial-gradient(circle at top, rgba(210, 230, 210, 0.45), transparent 40%),
+    linear-gradient(180deg, #b2d4e5 0%, #4e6f54 100%);
+  color: #f4f0dc;
   font-family: "Trebuchet MS", sans-serif;
 }
 
@@ -17,6 +19,93 @@ body {
   position: relative;
 }
 
+#app.is-playing {
+  cursor: none;
+}
+
 canvas {
   display: block;
+}
+
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 244, 190, 0.92);
+  box-shadow: 0 0 10px rgba(255, 233, 156, 0.5);
+}
+
+.crosshair::before {
+  top: 8px;
+  left: 0;
+  width: 18px;
+  height: 2px;
+}
+
+.crosshair::after {
+  top: 0;
+  left: 8px;
+  width: 2px;
+  height: 18px;
+}
+
+#app.is-playing .crosshair {
+  opacity: 1;
+}
+
+.hud {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 20, 14, 0.18), rgba(8, 20, 14, 0.55)),
+    radial-gradient(circle at center, rgba(174, 205, 148, 0.18), transparent 55%);
+  transition:
+    opacity 180ms ease,
+    visibility 180ms ease;
+}
+
+.hud--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hud__panel {
+  max-width: 440px;
+  padding: 24px 28px;
+  border: 1px solid rgba(237, 228, 181, 0.35);
+  background: rgba(27, 42, 30, 0.72);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+}
+
+.hud__title {
+  margin: 0 0 12px;
+  color: #f8efc6;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hud__text {
+  margin: 10px 0 0;
+  color: rgba(244, 240, 220, 0.9);
+  font-size: 1rem;
+  line-height: 1.5;
 }
