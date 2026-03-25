@@ -1,0 +1,22 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: linear-gradient(180deg, #b2d4e5 0%, #6b8f71 100%);
+  color: #102218;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+#app {
+  position: relative;
+}
+
+canvas {
+  display: block;
+}
