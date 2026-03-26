@@ -2,6 +2,8 @@
 
 Experimento de exploracao 3D em primeira pessoa, rodando no navegador com `Three.js`, focado em uma paisagem amazonica estilizada com relevo procedural, biomas, fauna distribuida por biomassa, clima dinamico e interacoes de observacao.
 
+![Exploracao em primeira pessoa](docs/screenshots/exploracao-primeira-pessoa.png)
+
 ## Estado atual
 
 O projeto ja possui:
@@ -70,22 +72,19 @@ docs/
 
 ## Documentacao
 
-- [architecture.md](/home/coruja/Projetos/crawler_amazon/docs/architecture.md)
-- [environment.md](/home/coruja/Projetos/crawler_amazon/docs/environment.md)
-- [relevo.md](/home/coruja/Projetos/crawler_amazon/docs/relevo.md)
-- [flora.md](/home/coruja/Projetos/crawler_amazon/docs/flora.md)
-- [fauna.md](/home/coruja/Projetos/crawler_amazon/docs/fauna.md)
-- [geografia.md](/home/coruja/Projetos/crawler_amazon/docs/geografia.md)
-- [screenshots.md](/home/coruja/Projetos/crawler_amazon/docs/screenshots.md)
+- [architecture.md](docs/architecture.md)
+- [environment.md](docs/environment.md)
+- [relevo.md](docs/relevo.md)
+- [flora.md](docs/flora.md)
+- [fauna.md](docs/fauna.md)
+- [geografia.md](docs/geografia.md)
+- [screenshots.md](docs/screenshots.md)
 
 ## Screenshots
 
-Capturas de tela ficam em `docs/screenshots/`.
+Tela inicial e HUD:
 
-Arquivos esperados:
-
-- `docs/screenshots/exploracao-primeira-pessoa.png`
-- `docs/screenshots/hud-inicial.png`
+![HUD inicial](docs/screenshots/hud-inicial.png)
 
 ## Direcao do projeto
 
