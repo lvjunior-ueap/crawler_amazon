@@ -76,6 +76,16 @@ docs/
 - [flora.md](/home/coruja/Projetos/crawler_amazon/docs/flora.md)
 - [fauna.md](/home/coruja/Projetos/crawler_amazon/docs/fauna.md)
 - [geografia.md](/home/coruja/Projetos/crawler_amazon/docs/geografia.md)
+- [screenshots.md](/home/coruja/Projetos/crawler_amazon/docs/screenshots.md)
+
+## Screenshots
+
+Capturas de tela ficam em `docs/screenshots/`.
+
+Arquivos esperados:
+
+- `docs/screenshots/exploracao-primeira-pessoa.png`
+- `docs/screenshots/hud-inicial.png`
 
 ## Direcao do projeto
 
