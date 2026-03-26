@@ -1,41 +1,89 @@
 # Crawler Amazon
 
-Projeto de jogo 3D experimental focado em exploração procedural inspirada em ambientes amazônicos (igarapés, vegetação densa e navegação natural).
+Experimento de exploracao 3D em primeira pessoa, rodando no navegador com `Three.js`, focado em uma paisagem amazonica estilizada com relevo procedural, biomas, fauna distribuida por biomassa, clima dinamico e interacoes de observacao.
 
-## Objetivo
+## Estado atual
 
-Criar um jogo leve, code-first, executável diretamente no navegador, com foco em:
+O projeto ja possui:
 
-* Performance em hardware modesto
-* Arquitetura limpa e escalável
-* Geração procedural de ambiente
-* Possível suporte futuro a VR (WebXR)
+- locomocao em primeira pessoa com colisao e salto
+- mundo procedural em faixa retangular no sentido do rio
+- quatro biomas legiveis: `mata ciliar`, `varzea`, `terra firme` e `lago`
+- ciclo de `dia`, `noite` e `chuva`
+- fauna terrestre, arborea, aerea e aquatica
+- flora distribuida por especie e idade
+- interacao de proximidade com animais e algumas especies vegetais
+- HUD com crosshair, prompt e painel de informacao
+- controles touch para Android com joystick virtual, olhar por arraste e botoes de acao
+- placas de bioma geradas proceduralmente
 
-## Filosofia
+## Stack
 
-* Sem engines pesadas (Unity, Unreal)
-* Controle total via código
-* Estética low-poly funcional
-* Performance > realismo
+- JavaScript ES Modules
+- Three.js
+- WebGL
+- Vite
 
-## Stack inicial
+## Como rodar
 
-* JavaScript (ES Modules)
-* Three.js
-* WebGL
-* Vite (em breve)
+```bash
+npm install
+npm run dev
+```
 
-## Estado do projeto
+Build de producao:
 
-🚧 Em desenvolvimento inicial
+```bash
+npm run build
+```
 
-## Próximos passos
+## Estrutura principal
 
-* Setup do ambiente base (render + loop)
-* Sistema de câmera FPS
-* Primeira cena 3D
-* Base de terreno procedural
+```text
+src/
+  core/
+    Game.js
+    Loop.js
+    Renderer.js
+  scene/
+    Camera.js
+    Player.js
+    World.js
+  systems/
+    InputSystem.js
+    MovementSystem.js
+    SoundSystem.js
+  data/
+    treeSpecies.json
 
-## Autor
+docs/
+  architecture.md
+  environment.md
+  fauna.md
+  flora.md
+  geografia.md
+  gamestyle.md
+  relevo.md
+  start.md
+  target.md
+```
 
-Projeto pessoal experimental focado em aprendizado profundo de gráficos e arquitetura de jogos.
+## Documentacao
+
+- [architecture.md](/home/coruja/Projetos/crawler_amazon/docs/architecture.md)
+- [environment.md](/home/coruja/Projetos/crawler_amazon/docs/environment.md)
+- [relevo.md](/home/coruja/Projetos/crawler_amazon/docs/relevo.md)
+- [flora.md](/home/coruja/Projetos/crawler_amazon/docs/flora.md)
+- [fauna.md](/home/coruja/Projetos/crawler_amazon/docs/fauna.md)
+- [geografia.md](/home/coruja/Projetos/crawler_amazon/docs/geografia.md)
+
+## Direcao do projeto
+
+O jogo procura um meio-termo entre:
+
+- exploracao contemplativa
+- museu interativo ao ar livre
+- legibilidade de especies e biomas
+- baixo custo de renderizacao
+
+Nao busca simulacao total nem hiper-realismo.

@@ -1,146 +1,46 @@
-# Setup Inicial do Projeto
+# Como Rodar
 
-Este documento descreve o processo de configuração do ambiente de desenvolvimento para o projeto **Crawler Amazon**.
+## Requisitos
 
----
+- Node.js 20+
+- npm
 
-## 🧰 Pré-requisitos
+O projeto foi validado localmente com Node `20.19.x`.
 
-Antes de começar, é necessário ter instalado:
-
-* Node.js (via NVM recomendado)
-* npm (instalado junto com Node)
-
----
-
-## 🚀 Instalação do Node.js (via NVM)
-
-### 1. Instalar o NVM
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-```
-
----
-
-### 2. Recarregar o terminal
-
-```bash
-source ~/.bashrc
-```
-
-> Se estiver usando zsh:
-
-```bash
-source ~/.zshrc
-```
-
----
-
-### 3. Instalar Node.js (LTS)
-
-```bash
-nvm install --lts
-```
-
----
-
-### 4. Ativar a versão instalada
-
-```bash
-nvm use --lts
-```
-
----
-
-### 5. Verificar instalação
-
-```bash
-node -v
-npm -v
-```
-
----
-
-## 📦 Inicialização do projeto com Vite
-
-Dentro do diretório do projeto:
-
-```bash
-npm create vite@latest .
-```
-
-### Opções selecionadas:
-
-* **Ignore files and continue**
-* **Framework:** Vanilla
-* **Linguagem:** JavaScript
-
----
-
-## 📥 Instalar dependências
+## Instalacao
 
 ```bash
 npm install
-npm install three
 ```
 
----
-
-## ▶️ Executar o projeto
+## Ambiente de desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-A aplicação estará disponível em:
+URL padrao:
 
-```
+```text
 http://localhost:5173
 ```
 
----
-
-## 📁 Estrutura inicial gerada
+## Build
 
 ```bash
-index.html
-main.js
-style.css
+npm run build
 ```
 
----
+## Controles
 
-## ⚠️ Observações importantes
+- `W A S D`: mover
+- `Shift`: correr
+- `Space`: pular
+- `E`: interagir
+- `Esc`: liberar o cursor
 
-* Sempre utilizar Node via NVM
-* Evitar versões antigas do Node (via apt)
-* Testar preferencialmente em:
+## Observacoes
 
-  * Chrome
-  * Firefox
-
----
-
-## 🧭 Próximos passos
-
-* Refatorar estrutura para `/src`
-* Implementar Game Loop
-* Integrar renderização com Three.js
-* Criar base de cena 3D
-
----
-
-## 💡 Dica
-
-Se houver problemas com versão do Node:
-
-```bash
-nvm use --lts
-```
-
----
-
-## 📌 Status
-
-✔ Ambiente pronto para desenvolvimento
+- a interacao atual funciona por proximidade curta
+- parte da ambientacao depende de `pointer lock` para a experiencia completa
+- o bundle atual ainda gera warning de tamanho no build, mas a compilacao passa

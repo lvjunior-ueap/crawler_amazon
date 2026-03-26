@@ -2,12 +2,14 @@ import * as THREE from "three";
 
 const FORWARD = new THREE.Vector3();
 const RIGHT = new THREE.Vector3();
+const COLLISION_POSITION = new THREE.Vector3();
 
 export class MovementSystem {
-  constructor({ player, input, bounds }) {
+  constructor({ player, input, bounds, world }) {
     this.player = player;
     this.input = input;
     this.bounds = bounds;
+    this.world = world;
   }
 
   update(deltaSeconds) {
@@ -49,8 +51,19 @@ export class MovementSystem {
 
     this.player.object.position.addScaledVector(this.player.velocity, deltaSeconds);
 
-    if (this.player.object.position.y <= this.bounds.floorY) {
-      this.player.object.position.y = this.bounds.floorY;
+    COLLISION_POSITION.copy(
+      this.world.resolvePlayerCollision(this.player.object.position),
+    );
+    this.player.object.position.x = COLLISION_POSITION.x;
+    this.player.object.position.z = COLLISION_POSITION.z;
+
+    const floorHeight = this.world.getFloorHeightAt(
+      this.player.object.position.x,
+      this.player.object.position.z,
+    );
+
+    if (this.player.object.position.y <= floorHeight) {
+      this.player.object.position.y = floorHeight;
       this.player.velocity.y = 0;
       this.player.isGrounded = true;
     }
@@ -65,7 +78,5 @@ export class MovementSystem {
       this.bounds.minZ,
       this.bounds.maxZ,
     );
-
-    this.input.endFrame();
   }
 }

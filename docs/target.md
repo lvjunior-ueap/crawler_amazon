@@ -2,49 +2,49 @@
 
 ## Objetivo
 
-Garantir desempenho aceitável em máquinas antigas.
+Manter a experiencia navegavel em hardware modesto, mesmo com:
 
-## Configuração alvo
+- terreno procedural grande
+- clima dinamico
+- fauna distribuida
+- luzes adicionais e lanternas
 
-CPU:
+## Perfil alvo
 
-* Intel Core i3 (3ª geração)
+- CPU: Intel Core i3 antigo ou equivalente
+- GPU: Intel HD 4000 ou superior
+- RAM: 4 GB a 8 GB
 
-GPU:
+## Navegadores prioritarios
 
-* Intel HD Graphics 2500 / 4000
+1. Chrome
+2. Firefox
 
-RAM:
+Secundarios:
 
-* 4GB – 8GB
+- Edge
+- Opera
 
-## Navegadores
+## Metas praticas
 
-Prioridade:
+- cena jogavel em hardware modesto
+- custo visual concentrado em leitura de ambiente, nao em shaders pesados
+- uso de geometria simples e materiais baratos
 
-1. Google Chrome
-2. Mozilla Firefox
+## Restricoes atuais
 
-Secundário:
+- o bundle de JS ainda esta acima de `500 kB`
+- `World.js` concentra bastante logica
+- ha muitos objetos individuais em cena, embora a linguagem visual seja low-poly
 
-* Edge
-* Opera
-* Safari (limitações conhecidas)
+## Diretriz
 
-## Meta de performance
+Quando surgir conflito entre:
 
-* 60 FPS estável em cena básica
-* 45–60 FPS em cena com mundo procedural leve
+- mais fidelidade visual
+- mais legibilidade
+- mais performance
 
-## Restrições
+a preferencia continua sendo:
 
-* Baixo número de draw calls
-* Geometria simples (low poly)
-* Shaders leves
-
-## Não suportado inicialmente
-
-* Ray tracing
-* Física pesada
-* Sombras complexas
-* Pós-processamento avançado
+`legibilidade + performance`

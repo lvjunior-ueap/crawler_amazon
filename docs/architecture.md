@@ -1,101 +1,119 @@
 # Arquitetura do Projeto
 
-## Abordagem
+## Visao geral
 
-Projeto code-first com separação clara de responsabilidades.
+O projeto e organizado em torno de um loop simples de jogo e de uma separacao clara entre:
 
-Inspirado em:
+- `core`: orquestracao da aplicacao
+- `scene`: camera, player e construcao do mundo
+- `systems`: input, movimento e audio
+- `data`: catalogos declarativos, como especies vegetais
 
-* ECS (Entity Component System)
-* Game Loop tradicional
-* Arquitetura modular
+## Modulos principais
 
-## Stack
+### `src/core/Game.js`
 
-* Three.js (renderização)
-* WebGL (backend gráfico)
-* JavaScript modular
+Responsavel por:
 
-## Estrutura inicial
+- criar renderer, camera, player, mundo e sistemas
+- atualizar o jogo a cada frame
+- montar HUD e painel de informacao
+- resolver interacao por proximidade
+- animar o viewmodel dos bracos
 
-```
-src/
- ├── core/
- │    ├── Game.js
- │    ├── Renderer.js
- │    └── Loop.js
- │
- ├── scene/
- │    ├── World.js
- │    ├── Camera.js
- │    └── Player.js
- │
- ├── systems/
- │    ├── InputSystem.js
- │    └── MovementSystem.js
- │
- └── utils/
-      └── Math.js
-```
+### `src/core/Renderer.js`
 
-## Conceitos principais
+Responsavel por:
 
-### Game Loop
+- criar o `WebGLRenderer`
+- configurar sombras e `outputColorSpace`
+- ajustar o canvas ao tamanho do container
 
-* update(delta)
-* render()
+### `src/core/Loop.js`
 
-### Separação
+Responsavel por:
 
-* Renderer → apenas desenha
-* World → contém entidades
-* Systems → lógica
+- controlar o ciclo `update/render`
+- alimentar o jogo com `deltaSeconds`
 
-## Decisões importantes
+### `src/scene/World.js`
 
-* Evitar dependência de frameworks pesados
-* Evitar lógica dentro do renderer
-* Tudo deve ser testável isoladamente
+E o modulo mais denso do projeto. Hoje concentra:
 
-## Futuro
+- relevo procedural
+- hidrografia
+- biomas
+- distribuicao de arvores e vegetacao baixa
+- fauna por biomassa
+- ciclo de dia-noite-chuva
+- lanternas noturnas
+- chuva visual
+- colisores estaticos e dinamicos
+- interagiveis de fauna e flora
 
-* ECS completo
-* Chunk system (mundo procedural)
-* Sistema de instancing
+### `src/scene/Player.js`
 
-## Persistência de Dados
+Responsavel por:
 
-### Estratégia
+- pivot de rotacao horizontal
+- pivot de pitch da camera
+- estado fisico basico do player
 
-A persistência deve seguir a abordagem mais simples possível inicialmente, evoluindo apenas quando necessário.
+### `src/systems/InputSystem.js`
 
-### Banco de dados
+Responsavel por:
 
-Ordem de preferência:
+- teclado
+- mouse
+- pointer lock
+- leitura de acoes discretas como interagir
 
-1. **SQLite**
+### `src/systems/MovementSystem.js`
 
-   * Zero configuração
-   * Ideal para prototipagem
-   * Baixo overhead
-   * Funciona bem com arquivos locais
+Responsavel por:
 
-2. **PostgreSQL**
+- locomocao
+- corrida
+- salto
+- gravidade
+- ajuste ao relevo do terreno
+- resolucao de colisao contra obstaculos do mundo
 
-   * Utilizado apenas se houver necessidade de:
+### `src/systems/SoundSystem.js`
 
-     * Escala
-     * Concorrência
-     * Queries mais complexas
+Responsavel por audio procedural em Web Audio:
 
-### Diretrizes
+- passos em agua e terra
+- cama ambiente
+- agua
+- chuva
+- canto de aves
+- som curto de interacao
 
-* Evitar dependência de banco no início do projeto
-* Preferir dados em memória ou JSON durante prototipagem
-* Introduzir persistência apenas quando houver necessidade real
+## Dados declarativos
 
-### Possíveis usos futuros
+### `src/data/treeSpecies.json`
 
-* Salvamento de estado do mundo
-* Seeds de geração procedural
-* Configurações do jogador
+Catalogo de especies arboreas com:
+
+- nome
+- familia geometrica
+- biomas validos
+- faixa de idade
+- parametros base de porte e copa
+
+O mundo transforma cada especie em exemplares com idade e escala dinamica.
+
+## Filosofia tecnica
+
+- JavaScript modular, sem engine pesada
+- geometria simples e legivel
+- sistemas de jogo pequenos e focados
+- configuracao por dados quando fizer sentido
+- preferencia por efeitos baratos sobre simulacao completa
+
+## Pontos de atencao
+
+- `World.js` centraliza muitas responsabilidades e e o principal candidato a futura divisao
+- a fauna e o clima hoje compartilham o mesmo modulo de cena
+- a documentacao em `docs/` deve acompanhar as mudancas de bioma, flora e fauna

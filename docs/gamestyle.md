@@ -1,50 +1,48 @@
 # Estilo de Jogo
 
-## Conceito
+## Direcao geral
 
-Exploração em primeira pessoa em ambiente amazônico procedural.
+`Crawler Amazon` mistura:
 
-## Referências
+- exploracao em primeira pessoa
+- paisagem procedural inspirada na Amazonia
+- leitura de especies como em um museu ambiental
+- baixa complexidade geometrica com atmosfera forte
 
-* Igarapés
-* Floresta densa
-* Navegação natural
+## Sensacao desejada
 
-## Estilo visual
+- curiosidade
+- calma
+- descoberta
+- observacao de fauna e flora
+- navegacao por paisagem, nao por missao
 
-* Low-poly
-* Cores suaves
-* Neblina para profundidade
-* Simplicidade geométrica
+## O que o jogo valoriza
 
-## Loop de gameplay
+- biomas reconheciveis
+- silhuetas legiveis
+- pontos de interesse espacados
+- clima e luz como parte da experiencia
+- interacao curta e objetiva
 
-1. Explorar ambiente
-2. Descobrir novas áreas
-3. Navegar entre rios e trilhas
-4. Observar o ambiente
+## O que ele evita
 
-## Mecânicas iniciais
+- combate
+- inventario pesado
+- interface dominante
+- realismo fisico total
+- simulacao ecologica completa
 
-* Movimento em primeira pessoa
-* Controle de câmera livre
-* Exploração contínua
+## Referencia pratica
 
-## Sem foco inicial em
+O projeto nao tenta ser:
 
-* Combate
-* Inventário complexo
-* Interface pesada
+- um simulador rigoroso
+- um sandbox de sobrevivencia
+- um shooter tradicional
 
-## Sensação desejada
+Ele tenta ser:
 
-* Calma
-* Imersão
-* Curiosidade
-* Descoberta
-
-## Futuro
-
-* VR (WebXR)
-* Interação com ambiente
-* Eventos procedurais
+- um passeio observacional interativo
+- um recorte amazônico estilizado
+- um ambiente legivel, quase didatico, sem perder movimento e clima
