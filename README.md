@@ -79,6 +79,7 @@ docs/
 - [fauna.md](docs/fauna.md)
 - [geografia.md](docs/geografia.md)
 - [screenshots.md](docs/screenshots.md)
+- [v2-world-streaming.md](docs/v2-world-streaming.md)
 
 ## Screenshots
 
